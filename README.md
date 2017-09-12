@@ -28,4 +28,4 @@ On the terminal type
 
 `npm run scrape`
 
-When the scraper is done you can find Member of Parliament data on a [JSON file](.data/members.json)
+When the scraper is done you can find Member of Parliament data on a [JSON file](./data/members.json)
