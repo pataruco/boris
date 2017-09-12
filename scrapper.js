@@ -1,6 +1,7 @@
 const Index = require('./src/index.js');
 const MP = require('./src/mp.js');
 const filesystem = require('fs');
+const colors = require('colors/safe');
 let numberOfMPs = 0;
 let numberofMPsScraped = 1;
 
@@ -12,7 +13,7 @@ async function start( ) {
         numberOfMPs = MPlinks.length;
         return getMPs( index.links );
     });
-    const MPJson = json.parse( MPArray );
+    const MPJson = JSON.stringify( MPArray );
     saveMembersInAFile( MPJson );
 }
 
@@ -30,7 +31,13 @@ async function getMPs( links ) {
         if ( link ) {
             const mp =  new MP( link );
             await mp.scrape( ).then( ( ) => {
-                console.log( `${ mp.data.name } has been scraped / ${numberofMPsScraped++} of ${numberOfMPs}` );
+                console.log(
+                    colors.green( `${ mp.data.name } `) +
+                    `/ has been scrapped ` +
+                    colors.yellow( `${numberofMPsScraped++} `) +
+                    `of ` +
+                    colors.green(`${numberOfMPs}`)
+                );
                 mps.push( mp.data );
             });
         }
@@ -41,9 +48,9 @@ async function getMPs( links ) {
 function saveMembersInAFile( json ) {
     filesystem.writeFile('./data/members.json', json, ( error ) => {
         if ( error ) {
-            return console.error( error );
+            return console.error( colors.red( error ) );
         }
-        console.log("The file was saved!");
+        console.log(colors.bgWhite.black( "The file was saved!" ) ) ;
     })
 }
 

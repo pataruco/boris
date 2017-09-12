@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/*"
+    "test": "mocha test/*",
+    "scrape" : "node scrape.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.1.2",
     "puppeteer": "^0.10.2"
   },
   "devDependencies": {
