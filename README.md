@@ -1,7 +1,7 @@
 # Members of Parliament scrapper
 
 ## What it is?
-Is a scrapper to pull Members of Parliament data
+Is a scrapper for the [UK Parliament website](http://www.parliament.uk/) to pull Members of Parliament data
 
 ## Why?
 Because I need to build an API with MP data and UK Parliament doesn't provide it
