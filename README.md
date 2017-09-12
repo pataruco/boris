@@ -4,7 +4,7 @@
 Is a scrapper to pull Members of Parliament data
 
 ## Why?
-Because I need it to build and API and UK Parliament doesn't provide it
+Because I need to build an API with MP data and UK Parliament doesn't provide it
 
 ## Technologies
 
