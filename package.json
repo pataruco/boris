@@ -1,11 +1,14 @@
 {
   "name": "scrapper",
+  "engines" : {
+      "node" : ">=8.4.0"
+  },
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "scrapper.js",
   "scripts": {
     "test": "mocha test/*",
-    "scrape" : "node scrape.js"
+    "scrape" : "node scraper.js"
   },
   "author": "",
   "license": "ISC",
