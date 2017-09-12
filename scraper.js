@@ -7,6 +7,7 @@ let numberofMPsScraped = 1;
 
 
 async function start( ) {
+    console.log(colors.bgWhite.black( "Scraper started" ) ) ;
     const index = new Index( );
     const MPArray = await index.scrape( ).then( ( ) => {
         const MPlinks = getMPlinks( index.links );
