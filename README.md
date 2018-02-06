@@ -1,4 +1,4 @@
-# Members of Parliament scrapper
+# Members of Parliament scraper
 
 ## What it is?
 Is a scraper for the [UK Parliament website](http://www.parliament.uk/) to pull Members of Parliament data
