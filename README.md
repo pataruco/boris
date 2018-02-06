@@ -1,7 +1,7 @@
 # Members of Parliament scrapper
 
 ## What it is?
-Is a scrapper for the [UK Parliament website](http://www.parliament.uk/) to pull Members of Parliament data
+Is a scraper for the [UK Parliament website](http://www.parliament.uk/) to pull Members of Parliament data
 
 ## Why?
 Because I need to build an API with MP data and UK Parliament doesn't provide it
@@ -16,7 +16,7 @@ Because I need to build an API with MP data and UK Parliament doesn't provide it
 
 Clone this repo
 
-`git clone git@github.com:pataruco/mp-scrapper-sandbox.git`
+`git clone git@github.com:pataruco/mp-scraper-sandbox.git`
 
 Install packages
 
