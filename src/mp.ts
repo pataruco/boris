@@ -1,7 +1,7 @@
 import puppeteer from 'puppeteer';
 
 const getQuerySelector = (query: string, attr: string): string | null => {
-  const $element = document.querySelector(query);
+  const $element: HTMLAnchorElement | null = document.querySelector(query);
   if ($element) {
     if (attr === 'text') {
       return $element.innerText;
@@ -46,3 +46,5 @@ const scrape = async (url: string): Promise<MP> => {
   browser.close();
   return mp;
 };
+
+export default scrape;

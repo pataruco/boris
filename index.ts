@@ -1,13 +1,14 @@
 import Index from './src/index';
-const MP = require('./src/mp.js');
-const filesystem = require('fs');
-const colors = require('colors/safe');
+import MP from './src/mp.js';
+import fs from 'fs';
+import colors from 'colors/safe';
+
 let numberOfMPs = 0;
 let numberofMPsScraped = 1;
 
-async function start() {
-  console.log(colors.bgWhite.black('Scraper started'));
-  const index = new Index();
+const start = async (): Promise<void> => {
+  console.log(colors.bgWhite('Scraper started'));
+  const index = await Index();
   const MPArray = await index.scrape().then(() => {
     const MPlinks = getMPlinks(index.links);
     numberOfMPs = MPlinks.length;
@@ -15,7 +16,7 @@ async function start() {
   });
   const MPJson = JSON.stringify(MPArray);
   saveMembersInAFile(MPJson);
-}
+};
 
 function getMPlinks(array) {
   return array.filter(item => {
@@ -46,7 +47,7 @@ async function getMPs(links) {
 }
 
 function saveMembersInAFile(json) {
-  filesystem.writeFile('./data/members.json', json, error => {
+  fs.writeFile('./data/members.json', json, error => {
     if (error) {
       return console.error(colors.red(error));
     }
