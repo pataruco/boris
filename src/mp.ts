@@ -41,16 +41,28 @@ const scrape = async (url: string): Promise<MP> => {
   const page = await browser.newPage();
   await page.goto(url);
   const mp: MP = await page.evaluate(() => ({
-    name: getQuerySelector('h1', 'text'),
-    constituency: getQuerySelector('#commons-constituency', 'text'),
-    addressAs: getQuerySelector('#commons-addressas', 'text'),
-    party: getQuerySelector('#commons-party', 'text'),
-    email: getQuerySelector('p[data-generic-id="email-address"] > a', 'text'),
+    name: (document.querySelector('h1') as HTMLHeadingElement).innerText,
+    constituency: (document.querySelector(
+      '#commons-constituency',
+    ) as HTMLDivElement).innerText,
+    addressAs: (document.querySelector('#commons-addressas') as HTMLDivElement)
+      .innerText,
+    party: (document.querySelector('#commons-party') as HTMLDivElement)
+      .innerText,
+    email: (document.querySelector(
+      'p[data-generic-id="email-address"] > a',
+    ) as HTMLAnchorElement).innerText,
     twitter: {
-      handler: getQuerySelector('li[data-generic-id="twitter"] > a', 'text'),
-      url: getQuerySelector('li[data-generic-id="twitter"] > a', 'link'),
+      handler: (document.querySelector(
+        'li[data-generic-id="twitter"] > a',
+      ) as HTMLAnchorElement).innerText,
+      url: (document.querySelector(
+        'li[data-generic-id="twitter"] > a',
+      ) as HTMLAnchorElement).href,
     },
-    website: getQuerySelector('li[data-generic-id="website"] > a', 'link'),
+    website: (document.querySelector(
+      'li[data-generic-id="website"] > a',
+    ) as HTMLAnchorElement).href,
   }));
   browser.close();
   return mp;
