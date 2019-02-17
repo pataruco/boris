@@ -1,4 +1,4 @@
-const Index = require('./src/index.js');
+import Index from './src/index';
 const MP = require('./src/mp.js');
 const filesystem = require('fs');
 const colors = require('colors/safe');
