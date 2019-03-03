@@ -18,23 +18,17 @@ const start = async (): Promise<void> => {
     console.error(error);
     throw error;
   }
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-
   numberOfMPs = mpIndex.length;
-  const mps = await scrapeMps(page, mpIndex);
-
-  browser.close();
-  console.log(mps);
+  const mps = await scrapeMps(mpIndex);
 };
 
-const scrapeMps = async (page: Page, links: string[]): Promise<MP[]> => {
+const scrapeMps = async (links: string[]): Promise<MP[]> => {
   const mps: MP[] = [];
 
-  links.forEach(async (link: string) => {
+  for (const link of links) {
     let mp: MP;
     try {
-      mp = await getMp(page, link);
+      mp = await getMp(link);
     } catch (error) {
       console.error(error);
       throw error;
@@ -47,7 +41,7 @@ const scrapeMps = async (page: Page, links: string[]): Promise<MP[]> => {
         colors.green(`${numberOfMPs}`),
     );
     mps.push(mp);
-  });
+  }
   return mps;
 };
 
