@@ -42,7 +42,7 @@ const scrapeMps = async (links: string[]): Promise<MP[]> => {
 };
 
 const start = async (): Promise<void> => {
-  console.log(colors.bgWhite('Scraper started'));
+  console.log(colors.yellow('Scraper started'));
   const mpIndex = await getMpIndex();
   numberOfMPs = mpIndex.length;
   const mps = await scrapeMps(mpIndex);
