@@ -2,6 +2,7 @@ import getMpIndex from './src/index';
 import getMp, { MP } from './src/mp';
 import fs from 'fs';
 import colors from 'colors/safe';
+import puppeteer from 'puppeteer';
 
 process.setMaxListeners(Infinity);
 
@@ -12,7 +13,7 @@ const saveMembersInAFile = async (data: MP[]) => {
   const mpObject = JSON.stringify(data);
   try {
     await fs.writeFileSync('./data/members.json', mpObject);
-    console.log(colors.bgWhite('The file was saved!'));
+    console.log(colors.yellow('The file was saved!'));
   } catch (error) {
     console.error(colors.red(JSON.stringify(error)));
     throw error;
@@ -20,11 +21,16 @@ const saveMembersInAFile = async (data: MP[]) => {
 };
 
 const scrapeMps = async (links: string[]): Promise<MP[]> => {
+  const browser = await puppeteer.launch({
+    headless: true,
+    handleSIGINT: false,
+  });
+  const page = await browser.newPage();
   const mps: MP[] = [];
   for (const link of links) {
     let mp: MP;
     try {
-      mp = await getMp(link);
+      mp = await getMp(page, link);
     } catch (error) {
       console.error(colors.red(JSON.stringify(error)));
       throw error;
@@ -38,6 +44,7 @@ const scrapeMps = async (links: string[]): Promise<MP[]> => {
     );
     mps.push(mp);
   }
+  browser.close();
   return mps;
 };
 

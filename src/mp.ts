@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer';
+import puppeteer, { Page } from 'puppeteer';
 
 export interface MP {
   name: string | null;
@@ -13,17 +13,9 @@ export interface MP {
   website: string | null;
 }
 
-const getMp = async (url: string): Promise<MP> => {
-  const browser = await puppeteer.launch({
-    headless: true,
-    handleSIGINT: false,
-    handleSIGTERM: false,
-    handleSIGHUP: false,
-  });
-  const page = await browser.newPage();
+const getMp = async (page: Page, url: string): Promise<MP> => {
   await page.goto(url);
   let mp: MP;
-
   try {
     mp = await page.evaluate(() => ({
       name: (document.querySelector('h1') as HTMLHeadingElement)
