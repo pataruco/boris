@@ -1,23 +1,28 @@
 {
-  "name": "scrapper",
-  "engines" : {
-      "node" : ">=8.4.0"
-  },
-  "version": "1.0.0",
-  "description": "",
-  "main": "scrapper.js",
-  "scripts": {
-    "test": "mocha test/*",
-    "scrape" : "node scraper.js"
-  },
-  "author": "",
-  "license": "ISC",
+  "name": "parliament-scrapper",
+  "version": "1",
+  "description": "A scrapper to collect data of each MP seating on UK Parliament",
+  "main": "index.js",
+  "repository": "git@github.com:pataruco/mp-scraper-sandbox.git",
+  "author": "Pedro Martin <pataruco@gmail.com>",
+  "license": "MIT",
+  "private": false,
   "dependencies": {
-    "colors": "^1.1.2",
-    "puppeteer": "^1.6.1"
+    "@types/colors": "^1.2.1",
+    "@types/puppeteer": "^1.12.1",
+    "colors": "^1.3.3",
+    "puppeteer": "^1.12.2",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.3.3"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "mocha": "^5.2.0"
+    "@types/jest": "^24.0.5",
+    "jest": "^24.1.0",
+    "nodemon": "^1.18.10",
+    "ts-jest": "^23.10.5",
+    "tslint": "^5.12.1"
+  },
+  "scripts": {
+    "scrape": "yarn ts-node index.ts"
   }
 }
