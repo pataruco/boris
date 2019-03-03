@@ -2,6 +2,7 @@ import getMpIndex from './src/index';
 import getMp, { MP } from './src/mp';
 // import fs from 'fs';
 import colors from 'colors/safe';
+import puppeteer, { Page } from 'puppeteer';
 
 let numberOfMPs = 0;
 let numberofMPsScraped = 1;
@@ -17,18 +18,23 @@ const start = async (): Promise<void> => {
     console.error(error);
     throw error;
   }
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
   numberOfMPs = mpIndex.length;
-  const mps = scrapeMps(mpIndex);
+  const mps = await scrapeMps(page, mpIndex);
+
+  browser.close();
   console.log(mps);
 };
 
-const scrapeMps = async (links: string[]): Promise<MP[]> => {
+const scrapeMps = async (page: Page, links: string[]): Promise<MP[]> => {
   const mps: MP[] = [];
 
   links.forEach(async (link: string) => {
     let mp: MP;
     try {
-      mp = await getMp(link);
+      mp = await getMp(page, link);
     } catch (error) {
       console.error(error);
       throw error;
