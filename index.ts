@@ -1,5 +1,5 @@
-import Index from './src/index';
-import MP from './src/mp.js';
+import getMpIndex from './src/index';
+import getMp from './src/mp.js';
 import fs from 'fs';
 import colors from 'colors/safe';
 
@@ -8,7 +8,7 @@ let numberofMPsScraped = 1;
 
 const start = async (): Promise<void> => {
   console.log(colors.bgWhite('Scraper started'));
-  const index = await Index();
+  const index = await getMpIndex();
   const MPArray = await index.scrape().then(() => {
     const MPlinks = getMPlinks(index.links);
     numberOfMPs = MPlinks.length;
@@ -49,9 +49,9 @@ async function getMPs(links) {
 function saveMembersInAFile(json) {
   fs.writeFile('./data/members.json', json, error => {
     if (error) {
-      return console.error(colors.red(error));
+      return console.error(colors.red(JSON.stringify(error)));
     }
-    console.log(colors.bgWhite.black('The file was saved!'));
+    console.log(colors.bgWhite('The file was saved!'));
   });
 }
 
