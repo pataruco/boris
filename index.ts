@@ -3,6 +3,8 @@ import getMp, { MP } from './src/mp';
 import fs from 'fs';
 import colors from 'colors/safe';
 
+process.setMaxListeners(Infinity);
+
 let numberOfMPs = 0;
 let numberofMPsScraped = 1;
 

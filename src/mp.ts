@@ -1,4 +1,4 @@
-import puppeteer, { Page } from 'puppeteer';
+import puppeteer from 'puppeteer';
 
 export interface MP {
   name: string | null;
@@ -14,7 +14,12 @@ export interface MP {
 }
 
 const getMp = async (url: string): Promise<MP> => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    headless: true,
+    handleSIGINT: false,
+    handleSIGTERM: false,
+    handleSIGHUP: false,
+  });
   const page = await browser.newPage();
   await page.goto(url);
   let mp: MP;
