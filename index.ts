@@ -7,8 +7,9 @@ let numberOfMPs = 0;
 let numberofMPsScraped = 1;
 
 const saveMembersInAFile = async (data: MP[]) => {
+  const mpObject = JSON.stringify(data);
   try {
-    await fs.writeFileSync('./data/members.json', data);
+    await fs.writeFileSync('./data/members.json', mpObject);
     console.log(colors.bgWhite('The file was saved!'));
   } catch (error) {
     console.error(colors.red(JSON.stringify(error)));
