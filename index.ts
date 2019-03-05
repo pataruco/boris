@@ -1,5 +1,6 @@
 import getMpIndex from './src/index';
-import getMp, { MP } from './src/mp';
+import getMp from './src/mp';
+import { MP } from './typings/mp';
 import fs from 'fs';
 import colors from 'colors/safe';
 import puppeteer from 'puppeteer';
@@ -9,7 +10,7 @@ process.setMaxListeners(Infinity);
 let numberOfMPs = 0;
 let numberofMPsScraped = 1;
 
-const saveMembersInAFile = async (data: MP[]) => {
+export const saveMembersInAFile = async (data: MP[]) => {
   const mpObject = JSON.stringify(data);
   try {
     await fs.writeFileSync('./data/members.json', mpObject);
@@ -20,7 +21,7 @@ const saveMembersInAFile = async (data: MP[]) => {
   }
 };
 
-const scrapeMps = async (links: string[]): Promise<MP[]> => {
+export const scrapeMps = async (links: string[]): Promise<MP[]> => {
   const browser = await puppeteer.launch({
     headless: true,
     handleSIGINT: false,
@@ -56,4 +57,10 @@ const start = async (): Promise<void> => {
   await saveMembersInAFile(mps);
 };
 
-start();
+if (!module.parent) {
+  start().catch(console.error);
+}
+
+export default start;
+
+// start();
