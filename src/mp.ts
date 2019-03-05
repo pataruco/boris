@@ -1,4 +1,4 @@
-import puppeteer, { Page } from 'puppeteer';
+import { Page } from 'puppeteer';
 
 export interface MP {
   name: string | null;

@@ -1,11 +1,7 @@
-import getMpIndex, { url } from './index';
+import getMpIndex from './index';
 jest.setTimeout(10000);
 
 describe('getMpIndex', () => {
-  beforeAll(async () => {
-    await page.goto(url);
-  });
-
   it('return an array of MP links', async () => {
     const mps = await getMpIndex();
 
