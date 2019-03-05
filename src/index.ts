@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
 
-const url = 'http://www.parliament.uk/mps-lords-and-offices/mps/';
+export const url = 'http://www.parliament.uk/mps-lords-and-offices/mps/';
 
 const getMpIndex = async (): Promise<string[]> => {
   const browser = await puppeteer.launch();
