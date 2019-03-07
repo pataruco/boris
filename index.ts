@@ -1,9 +1,9 @@
-import getMpIndex from './src/index';
-import getMp from './src/mp';
-import { MP } from './typings/mp';
-import fs from 'fs';
-import colors from 'colors/safe';
-import puppeteer from 'puppeteer';
+import colors from "colors/safe";
+import fs from "fs";
+import puppeteer from "puppeteer";
+import getMpIndex from "./src/index";
+import getMp from "./src/mp";
+import { MP } from "./typings/mp";
 
 process.setMaxListeners(Infinity);
 
@@ -13,9 +13,11 @@ let numberofMPsScraped = 1;
 export const saveMembersInAFile = async (data: MP[]) => {
   const mpObject = JSON.stringify(data);
   try {
-    await fs.writeFileSync('./data/members.json', mpObject);
-    console.log(colors.yellow('The file was saved!'));
+    await fs.writeFileSync("./data/members.json", mpObject);
+    // tslint:disable-next-line:no-console
+    console.log(colors.yellow("The file was saved!"));
   } catch (error) {
+    // tslint:disable-next-line:no-console
     console.error(colors.red(JSON.stringify(error)));
     throw error;
   }
@@ -23,8 +25,8 @@ export const saveMembersInAFile = async (data: MP[]) => {
 
 export const scrapeMps = async (links: string[]): Promise<MP[]> => {
   const browser = await puppeteer.launch({
-    headless: true,
     handleSIGINT: false,
+    headless: true
   });
   const page = await browser.newPage();
   const mps: MP[] = [];
@@ -33,15 +35,17 @@ export const scrapeMps = async (links: string[]): Promise<MP[]> => {
     try {
       mp = await getMp(page, link);
     } catch (error) {
+      // tslint:disable-next-line:no-console
       console.error(colors.red(JSON.stringify(error)));
       throw error;
     }
+    // tslint:disable-next-line:no-console
     console.log(
       colors.green(`${mp.name} `) +
         `/ has been scrapped ` +
         colors.yellow(`${numberofMPsScraped++} `) +
         `of ` +
-        colors.green(`${numberOfMPs}`),
+        colors.green(`${numberOfMPs}`)
     );
     mps.push(mp);
   }
@@ -50,9 +54,10 @@ export const scrapeMps = async (links: string[]): Promise<MP[]> => {
 };
 
 const start = async (
-  saveMembersInAFilefn = saveMembersInAFile,
+  saveMembersInAFilefn = saveMembersInAFile
 ): Promise<void> => {
-  console.log(colors.yellow('Scraper started'));
+  // tslint:disable-next-line:no-console
+  console.log(colors.yellow("Scraper started"));
   const mpIndex = await getMpIndex();
   numberOfMPs = mpIndex.length;
   const mps = await scrapeMps(mpIndex);
@@ -60,6 +65,7 @@ const start = async (
 };
 
 if (!module.parent) {
+  // tslint:disable-next-line:no-console
   start().catch(console.error);
 }
 

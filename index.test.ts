@@ -1,9 +1,10 @@
-import { MP } from './typings/mp';
-import * as mockGetMp from './src/mp';
-import * as mockGetMpIndex from './src/index';
 import start, { scrapeMps } from './index';
+import * as mockGetMpIndex from './src/index';
+import * as mockGetMp from './src/mp';
+import { MP } from './typings/mp';
 
 jest.mock('colors');
+// tslint:disable-next-line:no-console
 console.log = jest.fn();
 
 const mockLinks = [

@@ -1,5 +1,5 @@
-import getMp from './mp';
 import puppeteer from 'puppeteer';
+import getMp from './mp';
 
 describe('getMp', () => {
   it('return an MP object', async () => {

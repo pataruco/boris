@@ -6,8 +6,11 @@ const getMp = async (page: Page, url: string): Promise<MP> => {
   let mp: MP;
   try {
     mp = await page.evaluate(() => ({
-      name: (document.querySelector('h1') as HTMLHeadingElement)
-        ? (document.querySelector('h1') as HTMLHeadingElement).innerText
+      addressAs: (document.querySelector(
+        '#commons-addressas',
+      ) as HTMLDivElement)
+        ? (document.querySelector('#commons-addressas') as HTMLDivElement)
+            .innerText
         : null,
       constituency: (document.querySelector(
         '#commons-constituency',
@@ -15,21 +18,18 @@ const getMp = async (page: Page, url: string): Promise<MP> => {
         ? (document.querySelector('#commons-constituency') as HTMLDivElement)
             .innerText
         : null,
-      addressAs: (document.querySelector(
-        '#commons-addressas',
-      ) as HTMLDivElement)
-        ? (document.querySelector('#commons-addressas') as HTMLDivElement)
-            .innerText
-        : null,
-      party: (document.querySelector('#commons-party') as HTMLDivElement)
-        ? (document.querySelector('#commons-party') as HTMLDivElement).innerText
-        : null,
       email: (document.querySelector(
         'p[data-generic-id="email-address"] > a',
       ) as HTMLAnchorElement)
         ? (document.querySelector(
             'p[data-generic-id="email-address"] > a',
           ) as HTMLAnchorElement).innerText
+        : null,
+      name: (document.querySelector('h1') as HTMLHeadingElement)
+        ? (document.querySelector('h1') as HTMLHeadingElement).innerText
+        : null,
+      party: (document.querySelector('#commons-party') as HTMLDivElement)
+        ? (document.querySelector('#commons-party') as HTMLDivElement).innerText
         : null,
       twitter: {
         handler: (document.querySelector(
@@ -56,6 +56,7 @@ const getMp = async (page: Page, url: string): Promise<MP> => {
         : null,
     }));
   } catch (error) {
+    // tslint:disable-next-line:no-console
     console.error(error);
     throw error;
   }

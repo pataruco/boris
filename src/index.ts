@@ -16,6 +16,7 @@ const getMpIndex = async (): Promise<string[]> => {
         .map(anchor => anchor.href),
     );
   } catch (error) {
+    // tslint:disable-next-line:no-console
     console.error(error);
     throw error;
   }
