@@ -48,8 +48,10 @@ describe('start', () => {
     const getMpIndexSpy = jest.spyOn(mockGetMpIndex, 'default');
     getMpIndexSpy.mockResolvedValueOnce(Promise.resolve(mockLinks));
 
-    await start();
+    const saveMembersInAFilefn = jest.fn();
+    await start(saveMembersInAFilefn);
 
     expect(getMpIndexSpy).toBeCalled();
+    expect(saveMembersInAFilefn).toBeCalled();
   });
 });
