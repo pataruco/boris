@@ -1,9 +1,11 @@
 import getMp from './mp';
+import puppeteer from 'puppeteer';
 
 describe('getMp', () => {
   it('return an MP object', async () => {
     const mpUrl =
       'https://www.parliament.uk/biographies/commons/nigel-adams/4057';
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     const mp = await getMp(page, mpUrl);
