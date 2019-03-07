@@ -30,7 +30,7 @@
   "scripts": {
     "lint": "yarn tslint",
     "prettier": "yarn prettier --write",
-    "scrape": "yarn ts-node index.ts",
+    "scrape:mp": "yarn ts-node scrape-mp.ts",
     "test": "yarn tsc --noEmit && jest"
   },
   "lint-staged": {

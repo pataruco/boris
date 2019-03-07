@@ -1,9 +1,10 @@
-import getMpIndex from './index';
+import getIndex from './index';
+import { MP_URL } from '../scrape-mp';
 jest.setTimeout(10000);
 
-describe('getMpIndex', () => {
+describe('getIndex', () => {
   it('return an array of MP links', async () => {
-    const mps = await getMpIndex();
+    const mps = await getIndex(MP_URL);
 
     expect(Array.isArray(mps)).toBe(true);
     expect(mps.length > 600).toBe(true);

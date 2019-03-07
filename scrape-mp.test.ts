@@ -1,5 +1,5 @@
-import start, { scrapeMps } from './index';
-import * as mockGetMpIndex from './src/index';
+import start, { scrapeMps } from './scrape-mp';
+import * as mockgetIndex from './src/index';
 import * as mockGetMp from './src/mp';
 import { MP } from './typings/mp';
 
@@ -46,13 +46,13 @@ describe('start', () => {
   });
 
   it('start the scrapping process', async () => {
-    const getMpIndexSpy = jest.spyOn(mockGetMpIndex, 'default');
-    getMpIndexSpy.mockResolvedValueOnce(Promise.resolve(mockLinks));
+    const getIndexSpy = jest.spyOn(mockgetIndex, 'default');
+    getIndexSpy.mockResolvedValueOnce(Promise.resolve(mockLinks));
 
     const saveMembersInAFilefn = jest.fn();
     await start(saveMembersInAFilefn);
 
-    expect(getMpIndexSpy).toBeCalled();
+    expect(getIndexSpy).toBeCalled();
     expect(saveMembersInAFilefn).toBeCalled();
   });
 });
