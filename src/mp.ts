@@ -60,7 +60,8 @@ const getMp = async (page: Page, url: string): Promise<MP> => {
     console.error(error);
     throw error;
   }
-
+  // tslint:disable-next-line:no-console
+  console.log(mp);
   return mp;
 };
 

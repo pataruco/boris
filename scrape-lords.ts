@@ -2,15 +2,17 @@ import colors from "colors/safe";
 import fs from "fs";
 import puppeteer from "puppeteer";
 import getIndex from "./src/index";
-import getMp from "./src/mp";
-import { MP } from "./typings/mp";
+import getLord from "./src/lord";
+import { Lord } from "./typings/lord";
 
 let numberOfMPs = 0;
 let numberofMPsScraped = 1;
 
-export const MP_URL = "http://www.parliament.uk/mps-lords-and-offices/mps/";
+export const LORDS_URL =
+  "https://www.parliament.uk/mps-lords-and-offices/lords/";
 
-export const saveMembersInAFile = async (data: MP[]) => {
+// TODO: abstract this into a util calss
+export const saveMembersInAFile = async (data: Lord[]) => {
   const mpObject = JSON.stringify(data);
   try {
     await fs.writeFileSync("./data/members.json", mpObject);
@@ -23,17 +25,17 @@ export const saveMembersInAFile = async (data: MP[]) => {
   }
 };
 
-export const scrapeMps = async (links: string[]): Promise<MP[]> => {
+export const scrapeMps = async (links: string[]): Promise<Lord[]> => {
   const browser = await puppeteer.launch({
     handleSIGINT: false,
     headless: true,
   });
   const page = await browser.newPage();
-  const mps: MP[] = [];
+  const mps: Lord[] = [];
   for (const link of links) {
-    let mp: MP;
+    let mp: Lord;
     try {
-      mp = await getMp(page, link);
+      mp = await getLord(page, link);
     } catch (error) {
       // tslint:disable-next-line:no-console
       console.error(colors.red(JSON.stringify(error)));
@@ -58,7 +60,7 @@ const start = async (
 ): Promise<void> => {
   // tslint:disable-next-line:no-console
   console.log(colors.yellow("Scraper started"));
-  const index = await getIndex(MP_URL);
+  const index = await getIndex(LORDS_URL);
   numberOfMPs = index.length;
   const mps = await scrapeMps(index);
   await saveMembersInAFilefn(mps);
