@@ -34,16 +34,12 @@
     "test": "yarn tsc --noEmit && jest"
   },
   "lint-staged": {
-    "linters": {
-      "*.{ts}": [
-        "yarn prettier && yarn lint",
-        "git add"
-      ],
-      "*.{js, md}": [
-        "yarn prettier",
-        "git add"
-      ]
-    }
+    "*.{ts}": [
+      "yarn prettier && yarn lint"
+    ],
+    "*.{js, md}": [
+      "yarn prettier"
+    ]
   },
   "husky": {
     "hooks": {
