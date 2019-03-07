@@ -49,12 +49,14 @@ export const scrapeMps = async (links: string[]): Promise<MP[]> => {
   return mps;
 };
 
-const start = async (): Promise<void> => {
+const start = async (
+  saveMembersInAFilefn = saveMembersInAFile,
+): Promise<void> => {
   console.log(colors.yellow('Scraper started'));
   const mpIndex = await getMpIndex();
   numberOfMPs = mpIndex.length;
   const mps = await scrapeMps(mpIndex);
-  await saveMembersInAFile(mps);
+  await saveMembersInAFilefn(mps);
 };
 
 if (!module.parent) {
