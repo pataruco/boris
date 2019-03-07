@@ -11,6 +11,7 @@
     "arrow-parens": false,
     "curly": [true, "ignore-same-line"],
     "import-name": false,
+    "quotemark": [true, "single"],
     "interface-name": false,
     "no-implicit-dependencies": false,
     "no-submodule-imports": false,
