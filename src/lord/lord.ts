@@ -1,6 +1,6 @@
 import { Page } from 'puppeteer';
-import { Lord } from '../../typings/lord';
 import setDate from '../lib/set-date';
+import { Lord } from '../typings/lord';
 
 const getLord = async (page: Page, url: string): Promise<Lord> => {
   await page.goto(url);
