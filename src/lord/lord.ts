@@ -66,6 +66,8 @@ const getLord = async (page: Page, url: string): Promise<Lord> => {
   if (lord.joinedTheLords) {
     lord = { ...lord, joinedTheLords: setDate(lord.joinedTheLords) };
   }
+  // tslint:disable-next-line:no-console
+  console.log(lord);
   return lord;
 };
 

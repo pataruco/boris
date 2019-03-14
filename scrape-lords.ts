@@ -11,7 +11,7 @@ const start = async (saveFileForHouseFn = saveFileForHouse): Promise<void> => {
   // tslint:disable-next-line:no-console
   console.log(colors.yellow('Scraper started'));
   const index = await getIndex(LORDS_URL);
-  const lords: Lord[] = await scrapePeopleFrom('commons', index);
+  const lords: Lord[] = await scrapePeopleFrom('lords', index);
   await saveFileForHouseFn('lords', lords);
 };
 
