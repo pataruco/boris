@@ -1,12 +1,12 @@
 # Members of Parliament scraper
 
-## What it is?
+## What is it?
 
-Is a scraper for the [UK Parliament website](http://www.parliament.uk/) to pull Members of Parliament data
+Is a scraper for the [UK Parliament website](http://www.parliament.uk/) to pull members data from House of Lords & House of Commons
 
 ## Why?
 
-Because I need to build an API with MP data and UK Parliament doesn't provide it
+Because I need to build an API with MP and Lords data and UK Parliament doesn't provide it
 
 ## Technologies
 
@@ -19,19 +19,25 @@ Because I need to build an API with MP data and UK Parliament doesn't provide it
 
 Clone this repo
 
-`git clone git@github.com:pataruco/mp-scraper.git`
+`git@github.com:pataruco/uk-parliament-scraper.git`
 
-Install packages
+Install dependencies
 
 `yarn`
 
 ## How to run it ?
 
-On the terminal type
+### Commons
 
-`yarn scrape`
+`yarn scrape:mps`
 
-When the scraper is done you can find Member of Parliament data on a [JSON file](./data/members.json)
+When the scraper is done you can find members of House of Commons data on a [JSON file called commons](./data/commons.json)
+
+### Lords
+
+`yarn scrape:lords`
+
+When the scraper is done you can find members of House of Lords data on a [JSON file called lords](./data/lords.json)
 
 ## Tests
 

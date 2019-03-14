@@ -34,7 +34,7 @@
     "lint": "yarn tslint --fix",
     "prettier": "yarn prettier --write",
     "scrape:lords": "yarn ts-node scrape-lords.ts",
-    "scrape:mp": "yarn ts-node scrape-mp.ts",
+    "scrape:mps": "yarn ts-node scrape-mp.ts",
     "test": "yarn tsc --noEmit && jest"
   },
   "husky": {
