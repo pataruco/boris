@@ -1,9 +1,9 @@
 import colors from 'colors/safe';
 import fs from 'fs';
 import puppeteer from 'puppeteer';
-import getIndex from './src/index';
+import getIndex from './src/lib/get-index/index';
 import getLord from './src/lord/lord';
-import { Lord } from './typings/lord';
+import { Lord } from './src/typings/lord';
 
 let numberOfMPs = 0;
 let numberofMPsScraped = 1;

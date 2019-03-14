@@ -1,6 +1,6 @@
 import colors from 'colors/safe';
 import puppeteer from 'puppeteer';
-import getIndex from './src/index';
+import getIndex from './src/lib/get-index/index';
 import saveFileForHouse from './src/lib/save-file';
 import getMp from './src/mp/mp';
 import { MP } from './src/typings/mp';
