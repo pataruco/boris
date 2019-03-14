@@ -1,5 +1,6 @@
-import start, { scrapeMps } from '../scrape-mp';
+import start from '../scrape-mp';
 import * as mockgetIndex from '../src/lib/get-index/index';
+import scrape from '../src/lib/scrape';
 import * as mockGetMp from '../src/mp/mp';
 import { MP } from '../src/typings/mp';
 
@@ -35,7 +36,7 @@ describe('scrapeMps', () => {
 
     getMpSpy.mockResolvedValueOnce(Promise.resolve(mockMp));
 
-    const mps = await scrapeMps(mockLinks);
+    const mps = await scrape('commons', mockLinks);
     expect(mps).toEqual(mockMps);
   });
 });

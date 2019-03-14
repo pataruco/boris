@@ -1,7 +1,7 @@
 import colors from 'colors/safe';
 import getIndex from './src/lib/get-index/index';
 import saveFileForHouse from './src/lib/save-file';
-import scrapePeopleFrom from './src/scrape';
+import scrapePeopleFrom from './src/lib/scrape';
 import { Lord } from './src/typings/lord';
 
 export const LORDS_URL =

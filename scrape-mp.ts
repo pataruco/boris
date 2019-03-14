@@ -1,7 +1,7 @@
 import colors from 'colors/safe';
 import getIndex from './src/lib/get-index/index';
 import saveFileForHouse from './src/lib/save-file';
-import scrapePeopleFrom from './src/scrape';
+import scrapePeopleFrom from './src/lib/scrape';
 import { MP } from './src/typings/mp';
 
 export const MP_URL = 'http://www.parliament.uk/mps-lords-and-offices/mps/';

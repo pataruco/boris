@@ -1,8 +1,8 @@
 import colors from 'colors/safe';
 import puppeteer from 'puppeteer';
-import getLord from '../lord/lord';
-import getMp from '../mp/mp';
-import { House } from '../typings/house';
+import getLord from '../../lord/lord';
+import getMp from '../../mp/mp';
+import { House } from '../../typings/house';
 
 let numberOfPeopleScrapped = 1;
 
