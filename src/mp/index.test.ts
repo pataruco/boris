@@ -1,5 +1,5 @@
-import getIndex from './index';
-import { MP_URL } from '../scrape-mp';
+import { MP_URL } from '../../scrape-mp';
+import getIndex from '../index';
 jest.setTimeout(10000);
 
 describe('getIndex', () => {

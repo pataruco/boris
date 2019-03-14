@@ -1,11 +1,6 @@
-import { DateTime } from "luxon";
-import { Page } from "puppeteer";
-import { Lord } from "../typings/lord";
-
-// TODO: create a Date string
-const setDate = (dateString: string): string => {
-  return DateTime.fromISO(new Date(dateString).toISOString()).toLocaleString();
-};
+import { Page } from 'puppeteer';
+import { Lord } from '../../typings/lord';
+import setDate from '../lib/set-date';
 
 const getLord = async (page: Page, url: string): Promise<Lord> => {
   await page.goto(url);
@@ -19,23 +14,23 @@ const getLord = async (page: Page, url: string): Promise<Lord> => {
             'p[data-generic-id="email-address"] > a',
           ) as HTMLAnchorElement).innerText
         : null,
-      fullTitle: (document.querySelector("#lords-fulltitle") as HTMLDivElement)
-        ? (document.querySelector("#lords-fulltitle") as HTMLDivElement)
+      fullTitle: (document.querySelector('#lords-fulltitle') as HTMLDivElement)
+        ? (document.querySelector('#lords-fulltitle') as HTMLDivElement)
             .innerText
         : null,
-      name: (document.querySelector("#lords-name") as HTMLDivElement)
-        ? (document.querySelector("#lords-name") as HTMLDivElement).innerText
+      name: (document.querySelector('#lords-name') as HTMLDivElement)
+        ? (document.querySelector('#lords-name') as HTMLDivElement).innerText
         : null,
       joinedTheLords: (document.querySelector(
-        "#joined-lords",
+        '#joined-lords',
       ) as HTMLDivElement)
-        ? (document.querySelector("#joined-lords") as HTMLDivElement).innerText
+        ? (document.querySelector('#joined-lords') as HTMLDivElement).innerText
         : null,
-      parliamentTitle: (document.querySelector("h1") as HTMLHeadingElement)
-        ? (document.querySelector("h1") as HTMLHeadingElement).innerText
+      parliamentTitle: (document.querySelector('h1') as HTMLHeadingElement)
+        ? (document.querySelector('h1') as HTMLHeadingElement).innerText
         : null,
-      party: (document.querySelector("#lords-party-group") as HTMLDivElement)
-        ? (document.querySelector("#lords-party-group") as HTMLDivElement)
+      party: (document.querySelector('#lords-party-group') as HTMLDivElement)
+        ? (document.querySelector('#lords-party-group') as HTMLDivElement)
             .innerText
         : null,
       twitter: {
@@ -66,6 +61,10 @@ const getLord = async (page: Page, url: string): Promise<Lord> => {
     // tslint:disable-next-line:no-console
     console.error(error);
     throw error;
+  }
+
+  if (lord.joinedTheLords) {
+    lord = { ...lord, joinedTheLords: setDate(lord.joinedTheLords) };
   }
   return lord;
 };

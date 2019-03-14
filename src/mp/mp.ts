@@ -1,16 +1,13 @@
 import { Page } from 'puppeteer';
-import { MP } from '../typings/mp';
+import { MP } from 'src/typings/mp';
 
 const getMp = async (page: Page, url: string): Promise<MP> => {
   await page.goto(url);
   let mp: MP;
   try {
     mp = await page.evaluate(() => ({
-      addressAs: (document.querySelector(
-        '#commons-addressas',
-      ) as HTMLDivElement)
-        ? (document.querySelector('#commons-addressas') as HTMLDivElement)
-            .innerText
+      addressAs: (document.querySelector('h1') as HTMLHeadingElement)
+        ? (document.querySelector('h1') as HTMLHeadingElement).innerText
         : null,
       constituency: (document.querySelector(
         '#commons-constituency',
@@ -25,8 +22,9 @@ const getMp = async (page: Page, url: string): Promise<MP> => {
             'p[data-generic-id="email-address"] > a',
           ) as HTMLAnchorElement).innerText
         : null,
-      name: (document.querySelector('h1') as HTMLHeadingElement)
-        ? (document.querySelector('h1') as HTMLHeadingElement).innerText
+      name: (document.querySelector('#commons-addressas') as HTMLDivElement)
+        ? (document.querySelector('#commons-addressas') as HTMLDivElement)
+            .innerText
         : null,
       party: (document.querySelector('#commons-party') as HTMLDivElement)
         ? (document.querySelector('#commons-party') as HTMLDivElement).innerText

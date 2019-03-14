@@ -1,6 +1,6 @@
 import start, { scrapeMps } from './scrape-mp';
 import * as mockgetIndex from './src/index';
-import * as mockGetMp from './src/mp';
+import * as mockGetMp from './src/mp/mp';
 import { MP } from './typings/mp';
 
 jest.mock('colors');

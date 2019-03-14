@@ -1,23 +1,23 @@
-import colors from "colors/safe";
-import fs from "fs";
-import puppeteer from "puppeteer";
-import getIndex from "./src/index";
-import getLord from "./src/lord";
-import { Lord } from "./typings/lord";
+import colors from 'colors/safe';
+import fs from 'fs';
+import puppeteer from 'puppeteer';
+import getIndex from './src/index';
+import getLord from './src/lord/lord';
+import { Lord } from './typings/lord';
 
 let numberOfMPs = 0;
 let numberofMPsScraped = 1;
 
 export const LORDS_URL =
-  "https://www.parliament.uk/mps-lords-and-offices/lords/";
+  'https://www.parliament.uk/mps-lords-and-offices/lords/';
 
 // TODO: abstract this into a util calss
 export const saveMembersInAFile = async (data: Lord[]) => {
   const mpObject = JSON.stringify(data);
   try {
-    await fs.writeFileSync("./data/members.json", mpObject);
+    await fs.writeFileSync('./data/members.json', mpObject);
     // tslint:disable-next-line:no-console
-    console.log(colors.yellow("The file was saved!"));
+    console.log(colors.yellow('The file was saved!'));
   } catch (error) {
     // tslint:disable-next-line:no-console
     console.error(colors.red(JSON.stringify(error)));
@@ -59,7 +59,7 @@ const start = async (
   saveMembersInAFilefn = saveMembersInAFile,
 ): Promise<void> => {
   // tslint:disable-next-line:no-console
-  console.log(colors.yellow("Scraper started"));
+  console.log(colors.yellow('Scraper started'));
   const index = await getIndex(LORDS_URL);
   numberOfMPs = index.length;
   const mps = await scrapeMps(index);
